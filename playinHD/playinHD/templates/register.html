@@ -19,6 +19,24 @@
 						<div class="login_title">
 							注册
 						</div>
+						<script type="text/javascript">
+							var countdown = 60
+							function settime(obj) {
+								if(countdown == 0 ){
+									obj.removeAttribute('disable');
+									obj.value = '免费获取验证码';
+									countdown = 60;
+									return;
+								}else{
+									obj.setAttribute('disable', true);
+									obj.value = '重新发送(' + countdown + ")";
+									countdown--;
+								}
+							setTimeout(function() {
+							settime(obj) }
+							,1000)
+							}
+						</script>
 						<form action="{%url 'register_check'%}" name="form1" id="forms" method="post" >
 							{%csrf_token%}
 							<div class="form_text_ipt">
@@ -37,8 +55,6 @@
 								<input name="repassword" type="password" id="passwordtwo" placeholder="重复密码">
 							</div>
 							<div class="ececk_warning"><span>密码不能为空</span></div>
-
-
 							<style>
 									.drag{
 										width: 300px;
@@ -159,6 +175,7 @@
 												bg.style.width = 0;
 												btn.style.transition = "left 1s ease";
 												bg.style.transition = "width 1s ease";
+												alert("请将滑块滑到终点");
 											}
 											//只要鼠标松开了，说明此时不需要拖动滑块了，那么就清除鼠标移动和松开事件。
 											document.onmousemove = null;
@@ -180,17 +197,22 @@
 						</form>
 						<script>
 							function check(){
+								var str=document.getElementById("phone").value;
 								var form=document.getElementById("forms");
 								if(document.getElementById("phone").value==""){
 								alert("用户名不能为空！")
 								return false
+								}
+								if(/^[0-9]+$/.test(str)==false)
+								{
+								alert("手机号请为纯数字!")
+									return false
 								}
 								if(document.getElementById("names").value==""){
 								alert("昵称不能为空!")
 								return false
 								}
 								if(document.getElementById("passwordone").value==""){
-								console.log(123);
 								alert("密码不能为空！")
 								return false
 								}
@@ -207,26 +229,26 @@
 							}
 						</script>
 						<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-						<script type="text/javascript">
+<!--						<script type="text/javascript">-->
 
-					$(function(){
-						$("#fm_submit").click(function(){
-							$.ajax({
-								url:"{%url 'register_check'%}",
-								type:"post",
-								dataType:"JSON",
-								data:$("#fm").serialize(),
-								success:function(args){
-									if(args.status=="NG"){
-									windows.location.href="http://127.0.0.1:8000/login/"
-										alter(args.msg)
-									}
-								}
-							})
-						 })
-					})
+<!--					$(function(){-->
+<!--						$("#fm_submit").click(function(){-->
+<!--							$.ajax({-->
+<!--								url:"{%url 'register_check'%}",-->
+<!--								type:"post",-->
+<!--								dataType:"JSON",-->
+<!--								data:$("#fm").serialize(),-->
+<!--								success:function(args){-->
+<!--									if(args.status=="NG"){-->
+<!--									windows.location.href="http://127.0.0.1:8000/login/"-->
+<!--										alter(args.msg)-->
+<!--									}-->
+<!--								}-->
+<!--							})-->
+<!--						 })-->
+<!--					})-->
 
-    </script>
+<!--    </script>-->
 						<div class="other_login">
 							<div class="left other_left">
 								<span>其它登录方式</span>
