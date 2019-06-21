@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html >
+<head>
+      <link rel="icon" href="/static/img/图标.ico" type="img/x-ico" />
+      <title>玩转黑大</title>
+      <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+      <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css" />
+      <link rel="stylesheet" type="text/css" href="/static/css/normalize.css"/>
+      <script type="text/javascript" src="/static/js/newjquery-1.9.1.min.js"></script>
+      <script src="/static/js/newcommon.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+	  var showproduct = {
+		  "boxid":"showbox",
+		  "sumid":"showsum",
+		  "boxw":400,//宽度,该版本中请把宽高填写成一样
+		  "boxh":400,//高度,该版本中请把宽高填写成一样
+		  "sumw":60,//列表每个宽度,该版本中请把宽高填写成一样
+		  "sumh":60,//列表每个高度,该版本中请把宽高填写成一样
+		  "sumi":7,//列表间隔
+		  "sums":5,//列表显示个数
+		  "sumsel":"sel",
+		  "sumborder":1,//列表边框，没有边框填写0，边框在css中修改
+		  "lastid":"showlast",
+		  "nextid":"shownext"
+		  };//参数定义	  
+	 $.ljsGlasses.pcGlasses(showproduct);//方法调用，务必在加载完后执行
+  });
+</script>
+<style>
+    .container{
+        width: 1000px;
+    }
+    .commentbox{
+        width: 900px;
+        margin: 20px auto;
+    }
+    .mytextarea {
+        width: 100%;
+        overflow: auto;
+        word-break: break-all;
+        height: 100px;
+        color: #000;
+        font-size: 1em;
+        resize: none;
+    }
+    .comment-list{
+        width: 900px;
+        margin: 20px auto;
+        clear: both;
+        padding-top: 20px;
+    }
+    .comment-list .comment-info{
+        position: relative;
+        margin-bottom: 20px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+    }
+    .comment-list .comment-info header{
+        width: 10%;
+        position: absolute;
+    }
+    .comment-list .comment-info header img{
+        width: 100%;
+        border-radius: 50%;
+        padding: 5px;
+    }
+    .comment-list .comment-info .comment-right{
+        padding:5px 0px 5px 11%; 
+    }
+    .comment-list .comment-info .comment-right h3{
+        margin: 5px 0px;
+    }
+    .comment-list .comment-info .comment-right .comment-content-header{
+        height: 25px;
+    }
+    .comment-list .comment-info .comment-right .comment-content-header span,.comment-list .comment-info .comment-right .comment-content-footer span{
+        padding-right: 2em;
+        color: #aaa;
+    }
+    .comment-list .comment-info .comment-right .comment-content-header span,.comment-list .comment-info .comment-right .comment-content-footer span.reply-btn,.send,.reply-list-btn{
+        cursor: pointer;
+    }
+    .comment-list .comment-info .comment-right .reply-list {
+        border-left: 3px solid #ccc;
+        padding-left: 7px;
+    }
+    .comment-list .comment-info .comment-right .reply-list .reply{
+        border-bottom: 1px dashed #ccc;
+    }
+    .comment-list .comment-info .comment-right .reply-list .reply div span{
+        padding-left: 10px;
+    }
+    .comment-list .comment-info .comment-right .reply-list .reply p span{
+        padding-right: 2em;
+        color: #aaa;
+    }
+</style>
+</head>
+<body background="/static/img/背景5.jpg" style="background-repeat:no-repeat;
+background-size:100% 100%; 
+background-attachment: fixed;">
+<div class="top">
+    <div class="topmenu">
+        <div class="topmenuleft fl">
+            <ul>
+                <li class="dec" ><a href="{% url 'mypage' %}" style="color:black;">我的状态</a></li><!-- 显示登陆状态 -->
+            </ul>
+        </div>
+        <div class="topmenuright fr">
+            <ul class="a">
+                <li  class="dec"><a href="{% url 'mypage' %}" class="order">我的信息<i class="tri"></i><i class="right_line"></i>
+                <li class="togli"><a href="{%url 'Feedback'%}" class="toga">我要反馈<i class="tri"></i><i class="right_line"></i></a>
+            </ul>
+        </div>
+    </div>  
+</div>
+<div class="logo">
+    <div class="logobox fl">    
+        <div class="fl">
+            <h1>哈尔滨-南岗区</h1>
+        </div>
+    </div>
+
+    <div class="searchbox fl">
+        <form action="{%url 'search_information'%}">
+            {% csrf_token %}
+        <div class="fl">查一下</div>
+        <input class="fl" type="text" name="storename" placeholder="  请输入商品或店家名称等" />
+        <button type="submit">搜索</button>
+        </form>
+        <ul>
+            <li><a href="#" name="龙塔" onclick="store222(this)">龙塔</a></li>
+			<li><a href="#" name="欢乐时光健康火锅(理治店)" onclick="store222(this)">欢乐时光健康火锅(理治店)</a></li>
+			<li><a href="#" name="千代武日本料理(开发区店)" onclick="store222(this)">千代武日本料理(开发区店)</a></li>
+			<li><a href="#" name="成都葫芦娃(鸿翔路店)" onclick="store222(this)">成都葫芦娃(鸿翔路店)</a></li>
+        </ul><!-- 将评论数最多的商家显示 -->
+    </div>
+</div>
+ <div class="showall">
+	                <!--left -->
+	                <div class="showbot">
+                    <div id="showbox">
+                        <img src="{{information.4}}" width="400" height="400" />
+                        <img src="{{information.4}}" width="400" height="400" />
+                        <img src="{{information.4}}" width="400" height="400" />
+                        <img src="{{information.4}}" width="400" height="400" />
+                        <img src="{{information.4}}" width="400" height="400" />
+                    </div><!--展示图片盒子-->
+                        <div id="showsum">
+                        	<!--展示图片里边-->
+                        </div>
+                        <p class="showpage">
+                            <a href="javascript:void(0);" id="showlast"> < </a>
+                            <a href="javascript:void(0);" id="shownext"> > </a>
+                        </p>
+                        </div>
+                        <!--conet -->
+                        <div class="tb-property">
+                        	<div class="tr-nobdr">
+                        		<h3 id="atitle"> {{information.0}}</h3>
+                        	</div>
+                        		<div class="txt">
+                        			<span class="nowprice">￥<a href="">{{information.1}}</a></span>
+                        		</div>
+                        	<div class="txt-h">
+                        		<span class="tex-o">分类</span>
+                        		<ul class="glist" id="glist" data-monitor="goodsdetails_fenlei_click">
+                        			<li><a title="红色36g" href="">{{information.3}}</a></li>
+                        		<!--<li><a title="红色36g" href="">红色36g</a></li>
+                        			<li><a title="蓝色16g" href="">红色36g</a></li>-->
+                        		</ul>
+                        	</div>
+                        	<script>
+                        	$(document).ready(function(){
+                          	var t = $("#text_box");
+                        	$('#min').attr('disabled',true);
+                            	$("#add").click(function(){    
+                               	 t.val(parseInt(t.val())+1)
+                               	 if (parseInt(t.val())!=1){
+                                   	 $('#min').attr('disabled',false);
+                                	}
+      
+                           	 }) 
+                            	$("#min").click(function(){
+                                	t.val(parseInt(t.val())-1);
+                                	if (parseInt(t.val())==1){
+                                   	 $('#min').attr('disabled',true);
+                                	}
+      
+                            	})  
+                        	});
+                        	</script>  
+                        	<div class="gcIpt">
+                                地址：{{information.2}}
+                        	</div>
+                        	<div class="nobdr-btns">
+                        		<button class="addcart yh" onclick="javascrtpt:window.location.href='https://hrb.meituan.com/'"><img src="/static/img/ht.png" width="25" height="25"/>下订单</button>
+                        	</div>
+                        	
+                        </div>
+                        <!--right -->
+                    </div>  
+<div class="container">
+    <div class="commentbox">
+        <textarea cols="80" rows="50" placeholder="来说几句吧......" class="mytextarea" id="content"></textarea>
+        <div class="btn btn-info pull-right" id="comment" onclick="comment111()">评论</div>
+    </div>
+    <div class="comment-list">
+    </div>
+</div>
+<script type="text/javascript" src="/static/js/newjquery.comment.js" ></script>
+<script type="text/javascript">
+ function store222(obj){
+	 var name=obj.name;
+	 var name= 'name='+name;
+	 console.log(name);
+	 location.href='{% url 'store' %}?'+name
+	 }
+    function comment111(){
+        var atitle=document.getElementById("atitle").innerText;
+        var comment=document.getElementById("content").value;
+        var comment="comment="+comment+"&"+"atitle="+atitle;
+        location.href='{% url 'deal_comment' %}?'+comment;
+    }
+    //初始化数据
+    var data;
+    var arr=[];
+    var information={{ information|safe }};
+    for(i=5;i<information.length;i++){
+        data={id:1,img:"http://08imgmini.eastday.com/mobile/20180920/20180920000517_b446c0d25823cad38eb1c79d11eac105_1.jpeg",replyName:information[i][0],beReplyName:"匿名",content:information[i][2],time:information[i][1],osname:"win10",replyBody:[]};
+        arr.push(data);
+    }
+    console.log(arr);
+<!--    var arr = [-->
+<!--        {id:1,img:"http://08imgmini.eastday.com/mobile/20180920/20180920000517_b446c0d25823cad38eb1c79d11eac105_1.jpeg",replyName:"",beReplyName:"匿名",content:"",time:"",osname:"",replyBody:[]},-->
+<!--        {id:2,img:"http://08imgmini.eastday.com/mobile/20180920/20180920000517_b446c0d25823cad38eb1c79d11eac105_1.jpeg",replyName:"匿名",beReplyName:"",content:"到菜市场买菜，看到一个孩子在看摊，我问：“一只鸡多少钱？” 那孩子回答：“23。” 我又问：“两只鸡多少钱？” 孩子愣了一下，一时间没算过来，急中生智大吼一声：“一次只能买一只！”",time:"2017-10-17 11:42:53",address:"深圳",osname:"",browse:"谷歌",replyBody:[{id:3,img:"",replyName:"帅大叔",beReplyName:"匿名",content:"来啊，我们一起吃鸡",time:"2017-10-17 11:42:53",address:"",osname:"",browse:"谷歌"}]},-->
+<!--        {id:3,img:"http://08imgmini.eastday.com/mobile/20180920/20180920000517_b446c0d25823cad38eb1c79d11eac105_1.jpeg",replyName:"帅大叔",beReplyName:"匿名",content:"同学聚会，看到当年追我的屌丝开着宝马车带着他老婆来了，他老婆是我隔壁宿舍的同班同学，心里后悔极了。",time:"2017-10-17 11:42:53",address:"深圳",osname:"win10",browse:"谷歌",replyBody:[]}-->
+<!--    ];-->
+    $(function(){
+        $(".comment-list").addCommentList({data:arr,add:""});
+<!--        $("#comment").click(function(){-->
+<!--            var obj = new Object();-->
+<!--            obj.img="http://08imgmini.eastday.com/mobile/20180920/20180920000517_b446c0d25823cad38eb1c79d11eac105_1.jpeg";-->
+<!--            obj.replyName="{{username}}";-->
+<!--            obj.content=$("#content").val();-->
+<!--            obj.browse="深圳";-->
+<!--            obj.osname="win10";-->
+<!--            obj.replyBody="";-->
+<!--            $(".comment-list").addCommentList({data:[],add:obj});-->
+<!--        });-->
+    })
+</script>                    				  
+</body>
+</html>

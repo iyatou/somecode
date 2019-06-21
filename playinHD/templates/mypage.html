@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+	<title>玩转黑大-个人信息</title>
+	<link rel="stylesheet" type="text/css" href="/static/mypagecss/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="/static/mypagecss/default.css">
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css'>
+	<link rel='stylesheet prefetch' href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900'>
+	<link rel="stylesheet" type="text/css" href="/static/mypagecss/styles.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/new.css">
+	<!--[if IE]>
+		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+</head>
+<body background="/static/img/bs.jpg">
+	<div class="htmleaf-container">
+		<header class="htmleaf-header">
+			<h1>我的信息 <span>Information for PlayinHD！</span></h1>
+			<div class="htmleaf-links">
+				<a class="htmleaf-icon icon-htmleaf-home-outline" href="{% url 'return_main' %}" title="进入主页"><span> 玩转黑大</span></a>
+			</div>
+		</header>
+		<div class="profile-card-wrap">
+			<input id="check" type="checkbox" class="check"><label for="check" class="toggle"> + </label>
+			<div class="content" data-text="欢迎进入个人信息页面">
+				<div class="title">{{username}}你好</div>
+				<div id="p1"><p>欢迎来到玩转黑大个人信息页面，在这里你可以看到自己所有浏览记录、评论以及反馈。还有完整的个人信息哦！</p></div>
+			</div>
+
+			<div class="link-info">
+				<div class="social">
+					<a class="link fb" href="#" title="我的账号信息" onclick="myid()"><i class="fa fa-facebook"></i></a>
+					<a class="link tw" href="#" title="我的评论信息" onclick="mycomment()"><i class="fa fa-twitter"></i></a>
+					<a class="link cp" href="#" title="我的反馈信息" onclick="myfeedback()"><i class="fa fa-codepen"></i></a>
+					<a class="link pi" href="#" title="我的历史纪录" onclick="myhistory()"><i class="fa fa-weibo"></i></a>
+					<a class="link li" href="#" title="修改密码" onclick="changepasswd()"><i class="fa fa-qq"></i></a>
+				</div>
+				<div class="photo"></div>
+			</div>
+		</div>
+	</div>
+	{% if messages %}
+			<script>
+               {% for msg in messages %}
+                     alert('{{ msg.message }}');
+               {% endfor %}
+            </script>
+             {% endif %}
+	<script type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript"  src="/static/js/script.js"></script>
+	<script type="text/javascript"  src="/static/js/Carousel figure.js"></script>
+	<script>
+		function delete_comment(obj){
+			console.log(obj);
+		}
+		function myid(){
+			$.getJSON("{% url 'id_mypage' %}",function(information){
+            $("#p1").text("")
+            $("#p1").append($("<li>"+information[0]+"</li>"));
+            $("#p1").append($("<li>"+information[1]+"</li>"));
+            $("#p1").append($("<li>"+information[2]+"</li>"));
+          })
+	}
+		function mycomment(){
+			var column=0;
+			$.getJSON("{% url 'comment_mypage' %}",function(information){
+
+				var status=0
+				$("#p1").text("")
+				$("#p1").append($("<li>"+information[column][1]+"</li>"));
+            	$("#p1").append($("<li>"+information[column][2]+"</li>"));
+            	$("#p1").append($("<li>"+information[column][3]+"</li>"));
+            	var nowlocal=information[column][0];
+            	var nowlocal="nowlocal="+nowlocal;
+<!--            	document.getElementById("p1").innerHTML+="<p><a href='{% url 'delete_comment' %}?'+nowlocal onclick='mycomment()'>删除这一条</a></p>";-->
+<!--            	document.getElementById("p1").innerHTML+="<p><a href='#' onclick='delete_comment(this)'>查看上一条</a></p>";-->
+<!--            	document.getElementById("p1").innerHTML+="<p><a href='#' onclick='mycomment(column)'>查看下一条</a></p>";-->
+				var a1 = document.createElement("a");
+				var br = document.createElement("br");
+                a1.href="#";
+                a1.innerText = "查看下一条";
+                var a2 = document.createElement("a");
+                a2.href="#";
+                a2.innerText = "查看上一条";
+                var a3 = document.createElement("a");
+                a3.href="#";
+                a3.innerText = "删除这一条";
+                a3.onclick = function(){
+                	var nowlocal=information[column][0];
+		 			var nowlocal= 'nowlocal='+nowlocal;
+		 			location.href='{% url 'delete_comment' %}?'+nowlocal;
+                }
+                a1.onclick = function(){
+                	column+=1;
+                	if(column==information.length){
+                		alert("没有更多信息了。。。");
+                	}
+                	else{
+                	$("#p1").text("")
+					$("#p1").append($("<li>"+information[column][1]+"</li>"));
+            		$("#p1").append($("<li>"+information[column][2]+"</li>"));
+            		$("#p1").append($("<li>"+information[column][3]+"</li>"));
+            		document.getElementById("p1").appendChild(a1);
+            		document.getElementById("p1").appendChild(a2);
+            		document.getElementById("p1").appendChild(a3);
+                	}
+                };
+                a2.onclick = function(){
+                	column-=1;
+                	if(column==-1){
+                		alert("没有更多信息了。。。");
+                	}
+                	else{
+                	$("#p1").text("")
+					$("#p1").append($("<li>"+information[column][1]+"</li>"));
+            		$("#p1").append($("<li>"+information[column][2]+"</li>"));
+            		$("#p1").append($("<li>"+information[column][3]+"</li>"));
+            		document.getElementById("p1").appendChild(a1);
+            		document.getElementById("p1").appendChild(a2);
+            		document.getElementById("p1").appendChild(a3);
+                	}
+                };
+                document.getElementById("p1").appendChild(a1);
+                document.getElementById("p1").appendChild(br);
+                document.getElementById("p1").appendChild(a2);
+                document.getElementById("p1").appendChild(br);
+                document.getElementById("p1").appendChild(a3);
+			})
+
+		}
+		function myfeedback(){
+			var column=1;
+			$.getJSON("{% url 'feedback_mypage' %}",function(information){
+				var status=0
+				$("#p1").text("")
+				$("#p1").append($("<li>"+information[column][1]+"</li>"));
+            	$("#p1").append($("<li>"+information[column][2]+"</li>"));
+				var a1 = document.createElement("a");
+				var br = document.createElement("br");
+                a1.href="#";
+                a1.innerText = "查看下一条";
+                var a2 = document.createElement("a");
+                a2.href="#";
+                a2.innerText = "查看上一条";
+                a1.onclick = function(){
+                	column+=1;
+                	if(column==information.length){
+                		alert("没有更多信息了。。。");
+                	}
+                	else{
+                	$("#p1").text("")
+					$("#p1").append($("<li>"+information[column][1]+"</li>"));
+            		$("#p1").append($("<li>"+information[column][2]+"</li>"));
+            		document.getElementById("p1").appendChild(a1);
+            		document.getElementById("p1").appendChild(a2);
+                	}
+                };
+                a2.onclick = function(){
+                	column-=1;
+                	if(column==-1){
+                		alert("没有更多信息了。。。");
+                	}
+                	else{
+                	$("#p1").text("")
+					$("#p1").append($("<li>"+information[column][1]+"</li>"));
+            		$("#p1").append($("<li>"+information[column][2]+"</li>"));
+            		document.getElementById("p1").appendChild(a1);
+            		document.getElementById("p1").appendChild(a2);
+                	}
+                };
+                document.getElementById("p1").appendChild(a1);
+                document.getElementById("p1").appendChild(br);
+                document.getElementById("p1").appendChild(a2);
+			})
+		}
+		function myhistory(){
+		var column=0;
+			$.getJSON("{% url 'history_mypage' %}",function(information){
+				var status=0
+				$("#p1").text("")
+				$("#p1").append($("<li>"+information[column][1]+"</li>"));
+            	$("#p1").append($("<li>"+information[column][2]+"</li>"));
+            	$("#p1").append($("<li>"+information[column][3]+"</li>"));
+				var a1 = document.createElement("a");
+				var br = document.createElement("br");
+                a1.href="#";
+                a1.innerText = "查看下一条";
+                var a2 = document.createElement("a");
+                a2.href="#";
+                a2.innerText = "查看上一条";
+                a1.onclick = function(){
+                	column+=1;
+                	if(column==information.length){
+                		alert("没有更多信息了。。。");
+                	}
+                	else{
+                	$("#p1").text("")
+					$("#p1").append($("<li>"+information[column][1]+"</li>"));
+            		$("#p1").append($("<li>"+information[column][2]+"</li>"));
+            		$("#p1").append($("<li>"+information[column][3]+"</li>"));
+            		document.getElementById("p1").appendChild(a1);
+            		document.getElementById("p1").appendChild(a2);
+                	}
+                };
+                a2.onclick = function(){
+                	column-=1;
+                	if(column==-1){
+                		alert("没有更多信息了。。。");
+                	}
+                	else{
+                	$("#p1").text("")
+					$("#p1").append($("<li>"+information[column][1]+"</li>"));
+            		$("#p1").append($("<li>"+information[column][2]+"</li>"));
+            		$("#p1").append($("<li>"+information[column][3]+"</li>"));
+            		document.getElementById("p1").appendChild(a1);
+            		document.getElementById("p1").appendChild(a2);
+                	}
+                };
+                document.getElementById("p1").appendChild(a1);
+                document.getElementById("p1").appendChild(br);
+                document.getElementById("p1").appendChild(a2);
+			})
+		}
+		function changepasswd(){
+			$("#p1").text("")
+<!--			 var a3 = document.createElement("a");-->
+<!--                a3.href="#";-->
+<!--                a3.innerText = "我要修改密码！";-->
+<!--                a3.onclick = function(){-->
+<!--		 		location.href='{% url 'change_passwd' %}';-->
+<!--                }-->
+<!--                document.getElementById("p1").appendChild(a3);-->
+			var  input1=document.createElement("input");
+			input1.placeholder="请输入原始密码！"
+			input1.id="password1";
+			document.getElementById("p1").appendChild(input1);
+			var  input2=document.createElement("input");
+			input2.placeholder="请输入现在密码！"
+			input2.id="password2";
+			document.getElementById("p1").appendChild(input2);
+			var  a1=document.createElement("a");
+			a1.innerHTML="确认修改！"
+			a1.href="#";
+			a1.onclick=function(){
+				var password1=document.getElementById("password1").value;
+				var password2=document.getElementById("password2").value;
+				if(password1==password2){
+					alert("两次密码不能一样！");
+				}
+				else if(password1.length<6||password2.length<6){
+					alert("密码长度不能小于6位");
+				}
+				else if(password1.length>11||password2.length>11){
+					alert("密码长度不能超过11位");
+				}
+				else{
+					var comment="password1="+password1+"&"+"password2="+password2;
+		 			location.href='{% url 'change_passwd' %}?'+comment;
+				}
+			}
+			input2.id="password2";
+			document.getElementById("p1").appendChild(a1);
+		}
+	</script>
+</body>
+</html>

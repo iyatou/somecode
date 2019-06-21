@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+{%load staticfiles%}
+<html lang="en">
+<head>
+	<audio src="http://play.taihe.com/?__methodName=mboxCtrl.playSong&fm=altg&__argsValue=2070928#"  autoplay="autoplay"> </audio>
+	<meta charset="utf-8" />
+	{% load staticfiles %}
+	<link rel="icon" href="/static/img/图标.ico" type="img/x-ico" />
+	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+	<title>玩转黑大</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/new.css" />
+	<link href="/static/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- Custom Theme files -->
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Hotel Deluxe Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--webfont-->
+<link href='http://fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+<script src="/static/js/jquery.easydropdown.js"></script>
+<!--Animation-->
+<script src="/static/js/wow.min.js"></script>
+<link href="/static/css/animate.css" rel='stylesheet' type='text/css' />
+<script>
+	new WOW().init();
+</script>
+</head>
+
+<body background="/static/img/背景5.jpg" style="background-repeat:no-repeat ;
+
+background-size:100% 100%; 
+
+background-attachment: fixed;">
+<div class="top">
+	<div class="topmenu">
+		<div class="topmenuleft fl">
+			<ul>
+				<li class="dec" ><a href="{% url 'mypage' %}" style="color:black;">欢迎您！{{ usersession }}，祝您开心</a></li><!-- 显示登陆状态 -->
+			</ul>
+		</div>
+		<div class="topmenuright fr">
+			<ul class="a">
+				<li  class="dec"><a href="{% url 'mypage' %}" class="order">我的信息<i class="tri"></i><i class="right_line"></i>
+				<li class="togli" ><a href="" class="toga">最近浏览<i class="tri"></i><i class="right_line"></i></a>
+					<ul class="togul">
+						<li><a href="#" onclick="store222(this)" name="{{mylook.0}}">{{mylook.0}}</a></li>
+						<li><a href="#" onclick="store222(this)" name="{{mylook.1}}">{{mylook.1}}</a></li>
+						<li><a href="#" onclick="store222(this)" name="{{mylook.2}}">{{mylook.2}}</a></li>
+						<li><a href="#" onclick="store222(this)" name="{{mylook.3}}">{{mylook.3}}</a></li>
+						<li><a href="#" onclick="store222(this)" name="{{mylook.4}}">{{mylook.4}}</a></li>
+					</ul>
+				</li>
+				<li class="togli"><a href="{%url 'Feedback'%}" class="toga">我要反馈<i class="tri"></i><i class="right_line"></i></a>
+				</li>
+			</ul>
+		</div>
+	</div>	
+</div>
+<div class="logo">
+	<div class="logobox fl">	
+		<div class="fl">
+			<h1>哈尔滨-南岗区</h1>
+		</div>
+	</div>
+
+	<div class="searchbox fl">
+		<form action="{%url 'search_information'%}">
+			{% csrf_token %}
+		<div class="fl">查一下</div>
+		<input class="fl" name="storename" type="text" placeholder="  请输入商品或店家名称等" />
+		<button type="submit">搜索</button>
+		</form>
+		<ul>
+			<li><a href="#" name="龙塔" onclick="store222(this)">龙塔</a></li>
+			<li><a href="#" name="欢乐时光健康火锅(理治店)" onclick="store222(this)">欢乐时光健康火锅(理治店)</a></li>
+			<li><a href="#" name="千代武日本料理(开发区店)" onclick="store222(this)">千代武日本料理(开发区店)</a></li>
+			<li><a href="#" name="成都葫芦娃(鸿翔路店)" onclick="store222(this)">成都葫芦娃(鸿翔路店)</a></li>
+		</ul><!-- 将评论数最多的商家显示 -->
+	</div>
+</div>
+<div class="nav">
+	<div class="choice" style="margin:0 auto">
+		<a href="#" class="arrL"></a>
+		<a href="#" class="arr3"></a>
+		<a href="#" class="arrR">
+		<div>
+			<span class="count">1</span>
+			<span>/5</span>
+		</div>
+		</a>
+		<ul>
+			<li>
+				<div class="first">
+					<a href="{{titlelink.0}}" target="view_window"><img src="{{img.0}}" /></a>
+					<div class="title-link fl">
+						<a href="{{titlelink.0}}" target="view_window"><strong style="font-size:14px">{{title.0}}</strong></a><!-- 新闻 -->
+					</div>
+				</div>
+				<div class="first">
+					<a href="{{titlelink.1}}" target="view_window"><img src="{{img.1}}" /></a>
+					<div class="title-link fl">
+						<a href="{{titlelink.1}}" target="view_window"><strong style="font-size:14px">{{title.1}}</strong></a><!-- 新闻 -->
+					</div>
+				</div>
+				<div class="first">
+					<a href="{{titlelink.2}}" target="view_window"><img src="{{img.2}}" /></a>
+					<div class="title-link fl">
+						<a href="{{titlelink.2}}" target="view_window"><strong style="font-size:14px">{{title.2}}</strong></a><!-- 新闻 -->
+					</div>
+				</div>
+				<div class="first">
+					<a href="{{titlelink.3}}" target="view_window"><img src="{{img.3}}" /></a>
+					<div class="title-link fl">
+						<a href="{{titlelink.3}}" target="view_window"><strong style="font-size:14px">{{title.3}}</strong></a><!-- 新闻 -->
+					</div>
+				</div>
+				<div class="first">
+					<a href="{{titlelink.4}}" target="view_window"><img src="{{img.4}}" /></a>
+					<div class="title-link fl">
+						<a href="{{titlelink.4}}" target="view_window"><strong style="font-size:14px">{{title.4}}</strong></a><!-- 新闻 -->
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="first">
+					<a href="{{titlelink.5}}" target="view_window"><img src="{{img.5}}" /></a>
+					<div class="title-link fl">
+						<a href="{{titlelink.5}}" target="view_window"><strong style="font-size:14px">{{title.5}}</strong></a><!-- 新闻 -->
+					</div>
+				</div>
+				<div class="first">
+					<a href="{{titlelink.6}}" target="view_window"><img src="{{img.6}}" /></a>
+					<div class="title-link fl">
+						<a href="{{titlelink.6}}" target="view_window"><strong style="font-size:14px">{{title.6}}</strong></a><!-- 新闻 -->
+					</div>
+				</div>
+				<div class="first">
+					<a href="{{titlelink.7}}" target="view_window"><img src="{{img.7}}" /></a>
+					<div class="title-link fl">
+						<a href="{{titlelink.7}}" target="view_window"><strong style="font-size:14px">{{title.7}}</strong></a><!-- 新闻 -->
+					</div>
+				</div>
+				<div class="first">
+					<a href="{{titlelink.8}}" target="view_window"><img src="{{img.8}}" /></a>
+					<div class="title-link fl">
+						<a href="{{titlelink.8}}" target="view_window"><strong style="font-size:14px">{{title.8}}</strong></a><!-- 新闻 -->
+					</div>
+				</div>
+				<div class="first">
+					<a href="{{titlelink.9}}" target="view_window"><img src="{{img.9}}" /></a>
+					<div class="title-link fl">
+						<a href="{{titlelink.9}}" target="view_window"><strong style="font-size:14px">{{title.9}}</strong></a><!-- 新闻 -->
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="navbox">
+		<div class="fl hidebox">
+		<ul class="fl select">
+			<li><a href="javascript:void(0)" onclick="location.href='{% url 'return_main' %}'">首页</a></li>
+			<li><a href="javascript:void(0)" onclick="play123()">游玩</a></li>
+			<li><a href="javascript:void(0)" onclick="shopping123()">购物</a></li>
+			<li><a href="javascript:void(0)" onclick="food123()">餐饮</a></li>
+			<li><a href="javascript:void(0)" onclick="hotel123()">住宿</a></li>
+			<li><a href="javascript:void(0)" onclick="health123()">健身</a></li>
+			<li><a href="javascript:void(0)" onclick="study123()">学习</a></li>
+			<li><a href="javascript:void(0)" onclick="kuaidi123()">快递</a></li>
+			<li><a href="javascript:void(0)" onclick="bus123()">出行</a></li>
+		</ul>
+		</div>
+	</div>
+	<div class="content_middle" id="content-box">
+   	  <div class="container">
+   	    <div class="content_middle_box">
+          <div class="top_grid">
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img"><img id="img1" src="https://store.is.autonavi.com/showpic/62a82f826cf6a70dc90da1ba0e0cb085?operate=merge&w=160&h=150&position=5"  class="img-responsive" alt=""/></div>
+                   </div>
+   				 <div class="inner_wrap">
+   				 	<ul class="star1">
+   				 	  <li><a href="#" onclick="store222(this)" id="a1" name="老北京炭火锅(巴陵街)"><h3 id="h1">老北京炭火锅(巴陵街)</h3></a></li>
+   				 	</ul>
+   				 </div>
+   			   </div>
+   			</div>
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img"><img id="img2" src="https://webmap0.bdimg.com/client/services/thumbnails?width=132&height=104&align=center,center&quality=100&src=http%3A%2F%2Fhiphotos.baidu.com%2Flbsugc%2Fpic%2Fitem%2F83025aafa40f4bfbc73c032a0d4f78f0f63618db.jpg"  class="img-responsive" alt=""/></div>
+                   </div>
+   				 <div class="inner_wrap">
+   				 	<ul class="star1">
+   				 	  <li><a href="#" onclick="store222(this)" id="a2" name="红博中央公园"><h3 id="h2">红博中央公园</h3></a></li>
+   				 	</ul>
+   				 </div>
+   			   </div>
+   			</div>
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img"><img id="img3" src="https://webmap0.bdimg.com/client/services/thumbnails?width=132&height=104&align=center,center&quality=100&src=http%3A%2F%2Fhiphotos.baidu.com%2Flbsugc%2Fpic%2Fitem%2F9a504fc2d562853545fe3d649def76c6a7ef635d.jpg" class="img-responsive" alt=""/></div>
+                   </div>
+   				 <div class="inner_wrap">
+   				 	<ul class="star1">
+   				 	  <li><a href="#" onclick="store222(this)" id="a3" name="万达广场(哈尔滨哈西店)"><h3 id="h3">万达广场(哈尔滨哈西店)</h3></a></li>
+   				 	</ul>
+   				 </div>
+   			   </div>
+   			</div>
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img"><img id="img4" src="https://p0.meituan.net/merchantpic/d297f8b6a39c968d43253fb6471f86a4449364.jpg%40340w_255h_1e_1c_1l%7Cwatermark%3D1%26%26r%3D1%26p%3D9%26x%3D2%26y%3D2%26relative%3D1%26o%3D20"  class="img-responsive" alt=""/></div>
+                   </div>
+   				 <div class="inner_wrap">
+   				 	<ul class="star1">
+   				 	  <li><a href="#" onclick="store222(this)" id="a4" name="Hi Meet嗨见健身工作室"><h3 id="h4">Hi Meet嗨见健身工作室</h3></a></li>
+   				 	</ul>
+   				 </div>
+   			   </div>
+   			</div>
+   			<div class="clearfix"> </div>
+   		</div>
+   	    <div id="big"   class="middle_grid wow fadeInUp" data-wow-delay="0.4s">
+   			<div class="col-md-6 index-grids">
+   			   <div class="grid1">
+   				  <div class="inner_wrap1">
+   				 	<ul class="item_module">
+   				 	 	<li class="module_right">
+   				 	 		<img id="img5" src="http://p0.meituan.net/320.0/tdchotel/f674f2906ef6767c63aa1efe99312bc5124925.jpg" " class="img-responsive" alt=""/>
+   				 	 		<a href="#" class="content_btn" onclick="store222(this)" id="a5" name="金域蓝爵商务休闲宾馆"><h2 id="h5">金域蓝爵商务休闲宾馆</h2></a>
+   				 	 	</li>
+   				 	 </ul>
+   				  </div>
+   			   </div>
+   			</div>
+   			<div id="big"  class="col-md-6 index-grids">
+   			   <div class="grid1">
+   				  <div class="inner_wrap1">
+   				 	<ul class="item_module">
+   				 	 	<li class="module_right">
+   				 	 		<img id="img6" src="http://p1.meituan.net/320.0/tdchotel/fe2bde9db5cc793c19493455141e718f35385.jpg" class="img-responsive" alt=""/>
+   				 	 		<a href="#" class="content_btn" onclick="store222(this)" id="a6" name="汉庭(哈尔滨学府路店)"><h2 id="h6">汉庭(哈尔滨学府路店)</h2></a>
+   				 	 	</li>
+   				 	 </ul>
+   				  </div>
+   			   </div>
+   			</div>
+   		</div>
+			<div class="top_grid" id="content-box">
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img"><img  id="img7"src="https://store.is.autonavi.com/showpic/40f75179af56320de56ba67e0f31e802?operate=merge&w=160&h=150&position=5"  class="img-responsive" alt=""/></div>
+                   </div>
+   				 <div class="inner_wrap">
+   				 	<ul class="star1">
+   				 	  <li><a href="#" onclick="store222(this)" id="a7" name="明洞烤肉(十字街店)"><h3 id="h7">明洞烤肉(十字街店)</h3></a></li>
+   				 	</ul>
+   				 </div>
+   			   </div>
+   			</div>
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img"><img id="img8" src="https://store.is.autonavi.com/showpic/a8137770a7c7f910f77865a99ce9b951?operate=merge&w=160&h=150&position=5"  class="img-responsive" alt=""/></div>
+                   </div>
+   				 <div class="inner_wrap">
+   				 	<ul class="star1">
+   				 	  <li><a href="#" onclick="store222(this)" id="a8" name="老火匠海鲜约会"><h3 id="h8">老火匠海鲜约会</h3></a></li>
+   				 	</ul>
+   				 </div>
+   			   </div>
+   			</div>
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img"><img id="img9" src="https://store.is.autonavi.com/showpic/3402e765bb4939cd6928d65097a0c0fa?operate=merge&w=160&h=150&position=5"  class="img-responsive" alt=""/></div>
+                   </div>
+   				 <div class="inner_wrap">
+   				 	<ul class="star1">
+   				 	  <li><a href="#" onclick="store222(this)" id="a9" name="君与传奇龙虾(平公店)"><h3 id="h9">君与传奇龙虾(平公店)</h3></a></li>
+   				 	</ul>
+   				 </div>
+   			   </div>
+   			</div>
+   			<div class="col-md-3 index-grids">
+   			  <div class="grid1">
+   				<div class="view view-first">
+                  <div class="index_img"><img id="img10" src="http://p0.meituan.net/320.0/tdchotel/__26365765__2977504.jpg" width="100%" height="100%" class="img-responsive" alt=""/></div>
+                   </div>
+   				 <div class="inner_wrap">
+   				 	<ul class="star1">
+   				 	  <li><a href="#" onclick="store222(this)" id="a10" name="香醍45°假日酒店"><h3 id="h10">香醍45°假日酒店</h3></a></li>
+   				 	</ul>
+   				 </div>
+   			   </div>
+   			</div>
+   			<div class="clearfix"> </div>
+   		</div>
+   		  </div>
+   		  </div>
+   	  </div>
+</div>
+
+<script type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript"  src="/static/js/script.js"></script>
+<script type="text/javascript"  src="/static/js/Carousel figure.js"></script>
+<script>
+	 function store222(obj){
+	 var name=obj.name;
+	 var name= 'name='+name;
+	 console.log(name);
+	 location.href='{% url 'store' %}?'+name
+	 }
+	 function store123(obj){
+	 	var name=obj.name;
+		var name= 'name='+name;
+		var ajax = new XMLHttpRequest();
+		ajax.open('get','{% url 'store' %}?'+name)
+		ajax.send();
+		ajax.onreadystatechange = function () {
+   			if (ajax.readyState==4 &&ajax.status==200) {
+
+　　　　	console.log(ajax.responseText);//输入相应的内容
+  　　	}
+	}
+
+<!--		$.ajax({-->
+<!--			url:"{% url 'store' %}",-->
+<!--			type:"POST",-->
+<!--			contentType:"application/json"-->
+<!--			data:{'name':name},-->
+<!--			success:function(response){-->
+<!--			alert("laile");-->
+<!--			},-->
+<!--		});-->
+	};
+	function play123(){
+			$.getJSON("{% url 'search_play' %}",function(information){
+            for (var i = 0; i <= 9; i++) {
+            	var hstr='h'+(i+1);
+            	var imgstr='img'+(i+1);
+            	var astr='a'+(i+1);
+              $("#"+hstr).text(information[0][i]);
+              $("#"+imgstr).attr('src',information[1][i]);
+              $("#"+astr).attr('name',information[0][i]);
+            };
+          })
+	}
+	function shopping123(){
+			$.getJSON("{% url 'search_shopping' %}",function(information){
+            for (var i = 0; i <= 9; i++) {
+            	var hstr='h'+(i+1);
+            	var imgstr='img'+(i+1);
+            	var astr='a'+(i+1);
+              $("#"+hstr).text(information[0][i]);
+              $("#"+imgstr).attr('src',information[1][i]);
+              $("#"+astr).attr('name',information[0][i]);
+            };
+          })
+     }
+     function food123(){
+			$.getJSON("{% url 'search_food' %}",function(information){
+            for (var i = 0; i <= 9; i++) {
+            	var hstr='h'+(i+1);
+            	var imgstr='img'+(i+1);
+            	var astr='a'+(i+1);
+              $("#"+hstr).text(information[0][i]);
+              $("#"+imgstr).attr('src',information[1][i]);
+              $("#"+astr).attr('name',information[0][i]);
+            };
+          })
+     }
+     function kuaidi123(){
+			$.getJSON("{% url 'search_kuaidi' %}",function(information){
+            for (var i = 0; i <= 9; i++) {
+            	var hstr='h'+(i+1);
+            	var imgstr='img'+(i+1);
+            	var astr='a'+(i+1);
+              $("#"+hstr).text(information[0][i]);
+              $("#"+imgstr).attr('src',information[1][i]);
+              $("#"+astr).attr('name',information[0][i]);
+            };
+          })
+     }
+     function hotel123(){
+			$.getJSON("{% url 'search_hotel' %}",function(information){
+            for (var i = 0; i <= 9; i++) {
+            	var hstr='h'+(i+1);
+            	var imgstr='img'+(i+1);
+            	var astr='a'+(i+1);
+              $("#"+hstr).text(information[0][i]);
+              $("#"+imgstr).attr('src',information[1][i]);
+              $("#"+astr).attr('name',information[0][i]);
+            };
+          })
+     }
+     function health123(){
+			$.getJSON("{% url 'search_health' %}",function(information){
+            for (var i = 0; i <= 9; i++) {
+            	var hstr='h'+(i+1);
+            	var imgstr='img'+(i+1);
+            	var astr='a'+(i+1);
+              $("#"+hstr).text(information[0][i]);
+              $("#"+imgstr).attr('src',information[1][i]);
+              $("#"+astr).attr('name',information[0][i]);
+            };
+          })
+     }
+     function study123(){
+			$.getJSON("{% url 'search_study' %}",function(information){
+            for (var i = 0; i <= 9; i++) {
+            	var hstr='h'+(i+1);
+            	var imgstr='img'+(i+1);
+            	var astr='a'+(i+1);
+              $("#"+hstr).text(information[0][i]);
+              $("#"+imgstr).attr('src',information[1][i]);
+              $("#"+astr).attr('name',information[0][i]);
+            };
+          })
+     }
+     function bus123(){
+			$.getJSON("{% url 'search_bus' %}",function(information){
+            for (var i = 0; i <= 9; i++) {
+            	var hstr='h'+(i+1);
+            	var imgstr='img'+(i+1);
+            	var astr='a'+(i+1);
+              $("#"+hstr).text(information[0][i]);
+              $("#"+imgstr).attr('src',information[1][i]);
+              $("#"+astr).attr('name',information[0][i]);
+            };
+          })
+     }
+</script>
+</body>
+</html>
