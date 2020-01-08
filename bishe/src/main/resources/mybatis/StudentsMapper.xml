@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yulanbo.bishe.mapper.StudentsMapper">
+  <resultMap id="BaseResultMap" type="com.yulanbo.bishe.model.Students">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="course" jdbcType="VARCHAR" property="course" />
+    <result column="courseid" jdbcType="INTEGER" property="courseid" />
+    <result column="grade" jdbcType="VARCHAR" property="grade" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yulanbo.bishe.model.Students">
+    insert into students (id, userid, username, 
+      school, course, courseid, 
+      grade)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{school,jdbcType=VARCHAR}, #{course,jdbcType=VARCHAR}, #{courseid,jdbcType=INTEGER}, 
+      #{grade,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yulanbo.bishe.model.Students">
+    insert into students
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="course != null">
+        course,
+      </if>
+      <if test="courseid != null">
+        courseid,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null">
+        #{course,jdbcType=VARCHAR},
+      </if>
+      <if test="courseid != null">
+        #{courseid,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

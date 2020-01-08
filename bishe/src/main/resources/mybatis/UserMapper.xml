@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yulanbo.bishe.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.yulanbo.bishe.model.User">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="useremail" jdbcType="VARCHAR" property="useremail" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="identity" jdbcType="VARCHAR" property="identity" />
+  </resultMap>
+  <insert id="addUser" parameterType="com.yulanbo.bishe.model.User">
+    insert into user (id, useremail, username,
+      password, sex, birthday, 
+      school, identity)
+    values (#{id,jdbcType=INTEGER}, #{useremail,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{birthday,jdbcType=TIMESTAMP}, 
+      #{school,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR})
+  </insert>
+    <select id="checkUser" parameterType="com.yulanbo.bishe.model.User" resultMap="BaseResultMap">
+      SELECT * FROM user where useremail=#{useremail} AND password=#{password}
+  </select>
+  <update id="alterPass" parameterType="com.yulanbo.bishe.model.User">
+      Update user set password=#{password} where useremail=#{useremail}
+  </update>
+  <update id="bindInfo" parameterType="com.yulanbo.bishe.model.User">
+      Update user set username=#{username},school=#{school},sex=#{sex},identity=#{identity},birthday=#{birthday} where useremail=#{useremail}
+  </update>
+  <select id="selectByEmail" parameterType="com.yulanbo.bishe.model.User" resultMap="BaseResultMap">
+      SELECT * FROM user where useremail=#{useremail}
+  </select>
+  <insert id="insertSelective" parameterType="com.yulanbo.bishe.model.User">
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="useremail != null">
+        useremail,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="identity != null">
+        identity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="useremail != null">
+        #{useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null">
+        #{identity,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

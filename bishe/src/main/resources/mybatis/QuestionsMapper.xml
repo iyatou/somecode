@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yulanbo.bishe.mapper.QuestionsMapper">
+  <resultMap id="BaseResultMap" type="com.yulanbo.bishe.model.Questions">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="lessionname" jdbcType="VARCHAR" property="lessionname" />
+    <result column="questionname" jdbcType="VARCHAR" property="questionname" />
+    <result column="choice" jdbcType="VARCHAR" property="choice" />
+    <result column="rightkey" jdbcType="VARCHAR" property="rightkey" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yulanbo.bishe.model.Questions">
+    insert into questions (id, type, lessionname, 
+      questionname, choice, rightkey
+      )
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{lessionname,jdbcType=VARCHAR}, 
+      #{questionname,jdbcType=VARCHAR}, #{choice,jdbcType=VARCHAR}, #{rightkey,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yulanbo.bishe.model.Questions">
+    insert into questions
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="lessionname != null">
+        lessionname,
+      </if>
+      <if test="questionname != null">
+        questionname,
+      </if>
+      <if test="choice != null">
+        choice,
+      </if>
+      <if test="rightkey != null">
+        rightkey,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="lessionname != null">
+        #{lessionname,jdbcType=VARCHAR},
+      </if>
+      <if test="questionname != null">
+        #{questionname,jdbcType=VARCHAR},
+      </if>
+      <if test="choice != null">
+        #{choice,jdbcType=VARCHAR},
+      </if>
+      <if test="rightkey != null">
+        #{rightkey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yulanbo.bishe.mapper.LessionTestMapper">
+  <resultMap id="BaseResultMap" type="com.yulanbo.bishe.model.LessionTest">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="lessionname" jdbcType="VARCHAR" property="lessionname" />
+    <result column="questionid" jdbcType="INTEGER" property="questionid" />
+    <result column="rightrate" jdbcType="VARCHAR" property="rightrate" />
+    <result column="changetime" jdbcType="TIMESTAMP" property="changetime" />
+    <result column="courseid" jdbcType="INTEGER" property="courseid" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yulanbo.bishe.model.LessionTest">
+    insert into lessiontest (id, lessionname, questionid, 
+      rightrate, changetime, courseid
+      )
+    values (#{id,jdbcType=INTEGER}, #{lessionname,jdbcType=VARCHAR}, #{questionid,jdbcType=INTEGER}, 
+      #{rightrate,jdbcType=VARCHAR}, #{changetime,jdbcType=TIMESTAMP}, #{courseid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yulanbo.bishe.model.LessionTest">
+    insert into lessiontest
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="lessionname != null">
+        lessionname,
+      </if>
+      <if test="questionid != null">
+        questionid,
+      </if>
+      <if test="rightrate != null">
+        rightrate,
+      </if>
+      <if test="changetime != null">
+        changetime,
+      </if>
+      <if test="courseid != null">
+        courseid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lessionname != null">
+        #{lessionname,jdbcType=VARCHAR},
+      </if>
+      <if test="questionid != null">
+        #{questionid,jdbcType=INTEGER},
+      </if>
+      <if test="rightrate != null">
+        #{rightrate,jdbcType=VARCHAR},
+      </if>
+      <if test="changetime != null">
+        #{changetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="courseid != null">
+        #{courseid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

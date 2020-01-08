@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yulanbo.bishe.mapper.StuLessionRateMapper">
+  <resultMap id="BaseResultMap" type="com.yulanbo.bishe.model.StuLessionRate">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="stuid" jdbcType="INTEGER" property="stuid" />
+    <result column="stuname" jdbcType="VARCHAR" property="stuname" />
+    <result column="barnum" jdbcType="INTEGER" property="barnum" />
+    <result column="nowaddress" jdbcType="VARCHAR" property="nowaddress" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yulanbo.bishe.model.StuLessionRate">
+    insert into stulessionrate (id, stuid, stuname, 
+      barnum, nowaddress)
+    values (#{id,jdbcType=INTEGER}, #{stuid,jdbcType=INTEGER}, #{stuname,jdbcType=VARCHAR}, 
+      #{barnum,jdbcType=INTEGER}, #{nowaddress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yulanbo.bishe.model.StuLessionRate">
+    insert into stulessionrate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="stuid != null">
+        stuid,
+      </if>
+      <if test="stuname != null">
+        stuname,
+      </if>
+      <if test="barnum != null">
+        barnum,
+      </if>
+      <if test="nowaddress != null">
+        nowaddress,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="stuid != null">
+        #{stuid,jdbcType=INTEGER},
+      </if>
+      <if test="stuname != null">
+        #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="barnum != null">
+        #{barnum,jdbcType=INTEGER},
+      </if>
+      <if test="nowaddress != null">
+        #{nowaddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

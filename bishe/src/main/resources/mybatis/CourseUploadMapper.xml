@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yulanbo.bishe.mapper.CourseUploadMapper">
+  <resultMap id="BaseResultMap" type="com.yulanbo.bishe.model.CourseUpload">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="coursename" jdbcType="VARCHAR" property="coursename" />
+    <result column="uploaderid" jdbcType="VARCHAR" property="uploaderid" />
+    <result column="uploadername" jdbcType="VARCHAR" property="uploadername" />
+    <result column="uploadtime" jdbcType="TIMESTAMP" property="uploadtime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yulanbo.bishe.model.CourseUpload">
+    insert into courseupload (id, coursename, uploaderid, 
+      uploadername, uploadtime)
+    values (#{id,jdbcType=INTEGER}, #{coursename,jdbcType=VARCHAR}, #{uploaderid,jdbcType=VARCHAR}, 
+      #{uploadername,jdbcType=VARCHAR}, #{uploadtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yulanbo.bishe.model.CourseUpload">
+    insert into courseupload
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="coursename != null">
+        coursename,
+      </if>
+      <if test="uploaderid != null">
+        uploaderid,
+      </if>
+      <if test="uploadername != null">
+        uploadername,
+      </if>
+      <if test="uploadtime != null">
+        uploadtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="coursename != null">
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="uploaderid != null">
+        #{uploaderid,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadername != null">
+        #{uploadername,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null">
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

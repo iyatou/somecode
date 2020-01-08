@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yulanbo.bishe.mapper.CourseEffictMapper">
+  <resultMap id="BaseResultMap" type="com.yulanbo.bishe.model.CourseEffict">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="courseid" jdbcType="INTEGER" property="courseid" />
+    <result column="coursename" jdbcType="VARCHAR" property="coursename" />
+    <result column="lessionrate" jdbcType="VARCHAR" property="lessionrate" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yulanbo.bishe.model.CourseEffict">
+    insert into courseeffict (id, courseid, coursename, 
+      lessionrate)
+    values (#{id,jdbcType=INTEGER}, #{courseid,jdbcType=INTEGER}, #{coursename,jdbcType=VARCHAR}, 
+      #{lessionrate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yulanbo.bishe.model.CourseEffict">
+    insert into courseeffict
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="courseid != null">
+        courseid,
+      </if>
+      <if test="coursename != null">
+        coursename,
+      </if>
+      <if test="lessionrate != null">
+        lessionrate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="courseid != null">
+        #{courseid,jdbcType=INTEGER},
+      </if>
+      <if test="coursename != null">
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="lessionrate != null">
+        #{lessionrate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
