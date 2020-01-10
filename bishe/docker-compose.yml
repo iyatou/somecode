@@ -1,0 +1,29 @@
+version: "3"
+services:
+  vue:
+    build: ./vueElementUiDemo
+    restart: always
+    ports:
+      - 9527:8080
+    depends_on:
+      - demo
+  demo:
+    build: ./demo
+    restart: always
+    ports:
+      - 8088:8088
+    depends_on:
+      - mysql
+    environment:
+      DATABASE_URL: jdbc:mysql://mysql:3306/lbm?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+      DATABASE_USER: root
+      DATABASE_PASSWORD: 123456
+  #注意DATABASE_URL 因为用了mysql8 部属后有问题 后面加&allowPublicKeyRetrieval=true
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: lbm
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123456
